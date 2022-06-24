@@ -67,7 +67,7 @@ addLayer("p", {
             }
         },
     },
-    layerShown(){return !player.t2.unlocked},
+    layerShown(){return true},
     upgrades: {
         11: {
             title: "The Void Awakens",
@@ -337,7 +337,7 @@ addLayer("l", {
         return new Decimal(1)
     },
 
-    layerShown() { return !player.t2.unlocked },          // Returns a bool for if this layer's node should be visible in the tree.
+    layerShown() { return true },          // Returns a bool for if this layer's node should be visible in the tree.
 
     tabFormat:[
         () => {
@@ -562,14 +562,13 @@ addLayer("d", {
     },
 
     layerShown() { 
-        if (hasUpgrade('p',14) && player.p.total.gte(75) && !player.t2.unlocked) return true
-        else if (player.d.total.gte(1) && !player.t2.unlocked) return true
+        if (hasUpgrade('p',14) && player.p.total.gte(75)) return true
+        else if (player.d.total.gte(1)) return true
         else if (inChallenge('p',11)) return false
-        else if (player.m.unlocked && !player.t2.unlocked) return true
-        else if (player.c.unlocked && !player.t2.unlocked) return true
-        else if (hasChallenge('p',11) && !player.t2.unlocked) return true
-        else if (hasChallenge('c',11) && !player.t2.unlocked) return true
-        else if (player.t2.unlocked) return false
+        else if (player.m.unlocked) return true
+        else if (player.c.unlocked) return true
+        else if (hasChallenge('p',11)) return true
+        else if (hasChallenge('c',11)) return true
         else return false
     },          // Returns a bool for if this layer's node should be visible in the tree.
 
@@ -794,7 +793,7 @@ addLayer("m", {
         return new Decimal(1e-496)
     },
 
-    layerShown() { return hasChallenge('p',11) && !player.t2.unlocked },          // Returns a bool for if this layer's node should be visible in the tree.
+    layerShown() { return hasChallenge('p',11) },          // Returns a bool for if this layer's node should be visible in the tree.
 
     upgrades: {
         // Look in the upgrades docs to see what goes here!
@@ -1149,7 +1148,7 @@ addLayer("c", {
     },
     branches:['m'],
 
-    layerShown() { return hasMilestone('m',1) || player.c.total.gte(1) && !player.t2.unlocked },          // Returns a bool for if this layer's node should be visible in the tree.
+    layerShown() { return hasMilestone('m',1) || player.c.total.gte(1)},          // Returns a bool for if this layer's node should be visible in the tree.
 
     milestones: {
         0: {
@@ -1413,7 +1412,7 @@ addLayer("a", {
         return new Decimal(0.5)
     },
 
-    layerShown() { return getBuyableAmount('c',11).gte(5) && !player.t2.unlocked},          // Returns a bool for if this layer's node should be visible in the tree.
+    layerShown() { return getBuyableAmount('c',11).gte(5) },          // Returns a bool for if this layer's node should be visible in the tree.
 
     upgrades: {
         11: {
@@ -1615,7 +1614,7 @@ addLayer("s", {
     },
     branches:['d'],
 
-    layerShown() { return !player.t2.unlocked && hasUpgrade('d',34) },          // Returns a bool for if this layer's node should be visible in the tree.
+    layerShown() { return hasUpgrade('d',34) },          // Returns a bool for if this layer's node should be visible in the tree.
 
     upgrades: {
         11: {
